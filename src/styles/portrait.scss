@@ -1,0 +1,32 @@
+@media (orientation: portrait) {
+
+    html {
+        background-image: url('../images/dashboardTextures.svg');
+        background-color: black;
+    }
+
+    body {
+        .center {
+            height: 100%;
+        }
+
+        .top{
+            margin-top: 10%;
+            margin-bottom: 15%;
+        }
+
+        .bottom {
+            flex-direction: row;
+            margin-top: 10%;
+
+            .button {
+                flex-basis: 20%;
+
+                img {
+                    width: 80%;
+                    margin: 0 10%;
+                }
+            }
+        }
+    }
+}

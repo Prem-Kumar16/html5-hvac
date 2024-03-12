@@ -1,0 +1,93 @@
+<!--
+   Copyright 2019 Igalia, S.L.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <div class="top">
+            <div class="icon">
+                <img src="../images/HMI_HVAC_Fan_Icon.svg">
+            </div>
+            <div class="fanSpeed">
+                <div class="fanSpeedContainer">
+                    <input id="FanSpeed" type="range" min="1" value="1" max="100" onchange="FANSPEED.set(this.value)">
+                    <progress value="1" max="100"></progress>
+                </div>
+                <div class="label">
+                    FAN SPEED
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <a id="LeftChair" value="false" class="seat left item button" onclick="SEATS.left()">
+                <img class="off" src="../images/HMI_HVAC_Left_Chair_OFF.svg"/>
+                <img class="on" src="../images/HMI_HVAC_Left_Chair_ON.svg"/>
+            </a>
+            <a id="ac" key="ac" value="false" class="ac item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_Inactive.svg"/>
+                <img class="enabled" src="../images/HMI_HVAC_Active.svg"/>
+                <div class="label">
+                    A/C
+                </div>
+            </a>
+            <a id="RightChair" value="false" class="seat right item button" onclick="SEATS.right()">
+                <img class="off" src="../images/HMI_HVAC_Right_Chair_OFF.svg"/>
+                <img class="on" src="../images/HMI_HVAC_Right_Chair_ON.svg"/>
+            </a>
+            <div class="temperatures item">
+                <div id="lefttemperature" class="temperatures-container" onscroll="TEMPERATURE.left(this)"></div>
+            </div>
+            <div class="block item">
+                <a id="recirculation" key="recirculation" value="false" class="circulation item button" onclick="BUTTONS.toggle(this)">
+                    <img class="disabled" src="../images/HMI_HVAC_Circulation_Inactive.svg"/>
+                    <img class="enabled" src="../images/HMI_HVAC_Circulation_Active.svg"/>
+                </a>
+            </div>
+            <div class="temperatures item">
+                <div id="righttemperature" class="temperatures-container" onscroll="TEMPERATURE.right(this)"></div>
+            </div>
+        </div>
+        <div class="bottom">
+            <a id="down" key="down" value="false" class="down item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_AirDown_Inactive.svg">
+                <img class="enabled" src="../images/HMI_HVAC_AirDown_Active.svg">
+            </a>
+            <a id="up" key="up" value="false" class="up item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_AirUp_Inactive.svg">
+                <img class="enabled" src="../images/HMI_HVAC_AirUp_Active.svg">
+            </a>
+            <a id="right" key="right" value="false" class="right item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_AirRight_Inactive.svg">
+                <img class="enabled" src="../images/HMI_HVAC_AirRight_Active.svg">
+            </a>
+            <a id="rear" key="rear" value="false" class="rear item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_Rear_Inactive.svg">
+                <img class="enabled" src="../images/HMI_HVAC_Rear_Active.svg">
+            </a>
+            <a id="front" key="front" value="false" class="front item button" onclick="BUTTONS.toggle(this)">
+                <img class="disabled" src="../images/HMI_HVAC_Front_Inactive.svg">
+                <img class="enabled" src="../images/HMI_HVAC_Front_Active.svg">
+            </a>
+        </div>
+        <div class="log" id="log">
+
+        </div>
+    </body>
+</html>
