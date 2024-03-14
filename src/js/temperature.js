@@ -13,6 +13,61 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+const sense = require('sense-hat-led');
+const convert = require('color-convert');
+
+// Code for LED present in sensehat as a class
+class LedSenseHat {
+    _led = null;
+    _range = 255; // The range for Sense HAT LED is 0-255
+
+    constructor() {
+        this._led = sense;
+        this._led.clear(); // Clear the LED matrix
+    }
+
+    writeValue(value1, value2) {
+        // Function to calculate color based on temperature
+        const getColor = (value) => {
+            let color;
+            if (value < 16) {
+                color = [0, 0, 255]; // Blue color for "LO"
+            } else if (value > 30) {
+                color = [255, 0, 0]; // Red color for "HI"
+            } else {
+                // Gradually change from blue to red for temperatures between 16 and 30
+                const percentage = (value - 16) / (30 - 16);
+                const hue = 240 - (percentage * 240); // Hue value from 240 (blue) to 0 (red)
+                color = convert.hsv.rgb([hue, 100, 100]); // Convert HSV to RGB
+            }
+            return color;
+        }
+
+        const color1 = getColor(value1);
+        const color2 = getColor(value2);
+        console.log("Value 1 is " + value1)
+        console.log("Value 2 is " + value2)
+
+        // Create a 8x8 matrix
+        let matrix = [];
+
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                if (j < 4) {
+                    matrix.push(color1);
+                } else {
+                    matrix.push(color2);
+                }
+            }
+        }
+
+        this._led.setPixels(matrix); // Set the color of all LEDs
+    }
+
+    shutdown() {
+        this._led.clear(); // Turn off all LEDs
+    }
+}
 
 var values = {
     leftTemperature: 22,
@@ -31,6 +86,7 @@ var controls = {
     rightTemperatureNode: null,
 };
 
+const led = new LedSenseHat();
 
 function createTemperatureElement() {
     var element = document.createElement('div');
@@ -53,6 +109,9 @@ export function update(path, dp) {
         node = controls.leftTemperatureNode;
     }
     setSemperature(node, temperatures.indexOf(temperature));
+
+    // Call writeValue with the current temperatures
+    led.writeValue(values.leftTemperature, values.rightTemperature);
 }
 
 function setSemperature(node, index) {
