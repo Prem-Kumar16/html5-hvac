@@ -21,3 +21,10 @@ subscribe_stream.on('data', function(response) {
         console.log("The type of dp is " + typeof dp);
     }
 });
+
+subscribe_stream.on('error', function(error) {
+    console.log("Error code: " + error.code + " message: " + error.message); 
+    // if an error happens here, the databroker will drop the subscriber, so 
+    // we need to subscribe again
+    subscribe();
+});
