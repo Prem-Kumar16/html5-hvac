@@ -88,6 +88,7 @@ function subscribe() {
             lock(path);
             updateVehicleInfo(path, dp);
             console.log("Path :" +path+ " Data : " +dp)
+            console.log("The type of dp is " + typeof dp);
             unlock(path);
         }
     });
