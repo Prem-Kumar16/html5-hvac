@@ -21,6 +21,7 @@ export function update(path, dp) {
     var value = dp.getUint32();
     node.value = value;
     node.parentNode.getElementsByTagName('progress')[0].value = value;
+    console.log("The value from fanspeed.js is " +value)
 }
 
 export function init() {

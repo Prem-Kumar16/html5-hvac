@@ -89,6 +89,8 @@ function subscribe() {
             updateVehicleInfo(path, dp);
             console.log("Path :" +path+ " Data : " +dp)
             console.log("The type of dp is " + typeof dp);
+            var value = dp.getUint32();
+            console.log("The value needed is " +value)
             unlock(path);
         }
     });
