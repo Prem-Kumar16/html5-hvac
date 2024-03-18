@@ -31,7 +31,7 @@
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
         "color-convert":"^2.0.1",
-        "agl-sense-hat-led":"^1.0.2",
+        "agl-sense-hat-led":"^1.0.3",
         "webpack-dev-server": "^4.8.1"
     },
     "dependencies": {
