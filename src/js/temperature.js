@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+const sense = require('agl-sense-hat-led-v2');
+const convert = require('color-convert');
+
 var values = {
     leftTemperature: 22,
     rightTemperature: 22,
