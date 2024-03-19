@@ -20,10 +20,9 @@ module.exports = {
         TEMPERATURE: './src/js/temperature.js'
     },
     output: {
-        path: __dirname + '/dist',
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         libraryTarget: 'var',
-        // `library` determines the name of the global variable
         library: '[name]'
     },
     optimization: {
@@ -87,8 +86,15 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        fallback: {
+            "zlib": false, // Do not include polyfill for zlib
+            "fs": false, // Do not include polyfill for fs
+            "node-zlib-backport": false // Do not include polyfill for node-zlib-backport
+        }
+    },
     devServer: {
         compress: true,
         port: 9000
     }
-}; 
+};
